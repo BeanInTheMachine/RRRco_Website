@@ -42,7 +42,7 @@ RRRco.getCompletions = function(prefix) {
 (function initCommands() {
 
   var t = function(term, text) { term.writeLine(text); };
-  var hr = function(term) { term.writeLine('\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550'); };
+  var hr = function(term) { term.writeLine('================================================================'); };
 
   RRRco.registerCommand('help', function(args, term) {
     if (args.length > 0) {
@@ -372,7 +372,7 @@ RRRco.getCompletions = function(prefix) {
       hr(term);
       term.writeLine('');
       term.writeLine('  ID              TITLE                                  DATE         CLEARANCE');
-      term.writeLine('  \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500   \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500   \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500   \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500');
+      term.writeLine('  ----------------   ----------------------------------------   ------------   ---------');
 
       for (var i = 0; i < RRRco.posts.length; i++) {
         var p = RRRco.posts[i];
