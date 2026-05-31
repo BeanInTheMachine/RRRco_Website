@@ -102,9 +102,9 @@ RRRco.getCompletions = function(prefix) {
     term.writeLine('reality layers that have become unstable, inconvenient, or');
     term.writeLine('embarrassing to authorized stakeholders.');
     term.writeLine('');
-    term.writeLine('Headquartered in the Sonoran Desert for reasons of ambient');
+    term.writeLine('Headquartered in the Chihuahuan Desert for reasons of ambient');
     term.writeLine('thermal noise masking and excellent sunsets, RRRco operates');
-    term.writeLine('seven known facilities (and three that are not known).');
+    term.writeLine('one known facility (and three that are not known).');
     term.writeLine('');
     term.writeLine('Our team consists of physicists, ontologists, narrative');
     term.writeLine('architects, and a suspicious number of former magicians.');
@@ -218,7 +218,7 @@ RRRco.getCompletions = function(prefix) {
         'Budget: $2.1M (FY2026)',
         '',
         'Project Mirage leverages the unique atmospheric conditions',
-        'of the Sonoran Desert to project persistent visual and',
+        'of the Chihuahuan Desert to project persistent visual and',
         'auditory suggestions across large areas. The project asks:',
         'if a mirage is convincing enough, is it still a mirage?',
         '',
