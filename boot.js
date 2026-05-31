@@ -317,12 +317,9 @@ RRRco.runBootSequence = function(terminal) {
 
     var slogan = slogans[Math.floor(Math.random() * slogans.length)];
     var sloganText = '"' + slogan + '"';
-    var pad = Math.floor((39 - sloganText.length) / 2);
-    var spaces = '';
-    for (var i = 0; i < pad; i++) spaces += ' ';
-    var paddedSlogan = spaces + sloganText;
+    var sloganW = sloganText.length;
 
-    var asciiLogo = [
+    var rawLogo = [
       '',
       '$$$$$$$\\   $$$$$$$\\   $$$$$$$\\                      ',
       '$$  __$$\\  $$  __$$\\  $$  __$$\\                     ',
@@ -332,11 +329,39 @@ RRRco.runBootSequence = function(terminal) {
       '$$ |   $$ |$$ |   $$ |$$ |   $$ |$$ |      $$ |  $$ |',
       '$$ |   $$ |$$ |   $$ |$$ |   $$ |\\$$$$$$$\\ \\$$$$$$  |',
       '\\__|   \\__|\\__|   \\__|\\__|   \\__| \\_______| \\______/ ',
-      '',
-      '          REALITY REPLACEMENT RESEARCH COMPANY',
-      '          ' + paddedSlogan,
       ''
     ];
+
+    var companyLine = 'REALITY REPLACEMENT RESEARCH COMPANY';
+    var maxW = 0;
+    for (var i = 0; i < rawLogo.length; i++) {
+      if (rawLogo[i].length > maxW) maxW = rawLogo[i].length;
+    }
+    if (companyLine.length > maxW) maxW = companyLine.length;
+    if (sloganW > maxW) maxW = sloganW.length;
+
+    function centerPad(text, width) {
+      var pad = Math.floor((width - text.length) / 2);
+      var s = '';
+      for (var i = 0; i < pad; i++) s += ' ';
+      return s + text;
+    }
+
+    function boxPad(text, width) {
+      var p = text;
+      while (p.length < width) p += ' ';
+      return p;
+    }
+
+    var border = '+' + Array(maxW + 3).join('=') + '+';
+    var asciiLogo = [border];
+    for (var i = 0; i < rawLogo.length; i++) {
+      asciiLogo.push('| ' + boxPad(rawLogo[i], maxW) + ' |');
+    }
+    asciiLogo.push('| ' + boxPad(centerPad(companyLine, maxW), maxW) + ' |');
+    asciiLogo.push('| ' + boxPad(centerPad(sloganText, maxW), maxW) + ' |');
+    asciiLogo.push('| ' + boxPad('', maxW) + ' |');
+    asciiLogo.push(border);
 
     var banner = [
       '',
