@@ -1,5 +1,187 @@
 var RRRco = RRRco || {};
 
+RRRco.bootPhases = {
+  header: [
+    [{ text: '', delay: 300 }, { text: 'RRRco Secure Terminal BIOS v2.14 \u2014 INITIALIZING...', delay: 500 }],
+    [{ text: '', delay: 300 }, { text: 'RRRco Secure Terminal BIOS v2.15 \u2014 BOOTING...', delay: 500 }],
+    [{ text: '', delay: 300 }, { text: 'RRRco Secure Terminal BIOS v2.14b \u2014 WAKING UP...', delay: 500 }],
+    [{ text: '', delay: 300 }, { text: 'RRRco Secure Terminal BIOS v2.14 \u2014 POWER ON SELF TEST...', delay: 500 }],
+    [{ text: '', delay: 300 }, { text: 'RRRco Secure Terminal BIOS v2.14 \u2014 SEQUENCE INITIATED', delay: 500 }],
+    [{ text: '', delay: 300 }, { text: 'RRRco Secure Terminal BIOS v2.13 (DOWNGRADED) \u2014 LOADING...', delay: 500 }]
+  ],
+  post: [
+    [
+      { text: 'POST: MEMORY CHECK.................................................. [OK]', delay: 350 },
+      { text: 'POST: CRYPTO ENGINE................................................. [OK]', delay: 250 },
+      { text: 'POST: REALITY ANCHOR CALIBRATION................................... [OK]', delay: 450 }
+    ],
+    [
+      { text: 'POST: MEMORY CHECK.................................................. [OK]', delay: 350 },
+      { text: 'POST: CRYPTO ENGINE................................................. [OK]', delay: 250 },
+      { text: 'POST: REALITY ANCHOR CALIBRATION................................... [OK]', delay: 450 },
+      { text: 'POST: SUPPLEMENTAL ANCHOR.......................................... [OK]', delay: 300 },
+      { text: '      Backup anchor calibrated. Better safe than nonexistent.', delay: 200 }
+    ],
+    [
+      { text: 'POST: MEMORY CHECK.................................................. [OK]', delay: 350 },
+      { text: 'POST: CRYPTO ENGINE................................................. [OK]', delay: 250 },
+      { text: 'POST: REALITY ANCHOR CALIBRATION................................... [WARN]', delay: 350 },
+      { text: '      Anchor drift within tolerance. Probably.', delay: 200 }
+    ],
+    [
+      { text: 'POST: MEMORY CHECK.................................................. [2.1 TB / 2.1 TB]', delay: 350 },
+      { text: 'POST: CRYPTO ENGINE................................................. [RSA-8192 / CHAOS-7]', delay: 300 },
+      { text: 'POST: REALITY ANCHOR............................................... [STABLE]', delay: 350 },
+      { text: '      Currently anchored in: CHIHUAHUAN DESERT, SECTOR 4', delay: 200 }
+    ],
+    [
+      { text: 'POST: MEMORY CHECK.................................................. [OK]', delay: 350 },
+      { text: 'POST: CRYPTO ENGINE................................................. [OK]', delay: 250 },
+      { text: 'POST: REALITY ANCHOR CALIBRATION................................... [OK]', delay: 400 },
+      { text: 'POST: NARRATIVE COHERENCE CHECK.................................... [OK]', delay: 300 },
+      { text: '      Story checks out. No plot holes detected.', delay: 200 }
+    ],
+    [
+      { text: 'POST: MEMORY CHECK.................................................. [OK]', delay: 300 },
+      { text: '      Also checked: your memory. We know what you did.', delay: 250 },
+      { text: 'POST: CRYPTO ENGINE................................................. [OK]', delay: 300 },
+      { text: 'POST: REALITY ANCHOR CALIBRATION................................... [OK]', delay: 400 }
+    ]
+  ],
+  esoteric: [
+    [
+      { text: 'POST: QUANTUM ENTANGLEMENT BUS..................................... [WARN]', delay: 350 },
+      { text: '      Phase drift detected at 0.002%. Within tolerances.', delay: 200 },
+      { text: 'POST: LIE DETECTOR.................................................. [DISABLED]', delay: 300 },
+      { text: '      Disabled per Legal Advisory 2026-03. We are not', delay: 150 },
+      { text: '      legally permitted to detect lies at this time.', delay: 150 },
+      { text: 'POST: COFFEE MACHINE (SECTOR G).................................... [NOT REAL]', delay: 350 },
+      { text: '      This device does not exist. Any coffee it produces', delay: 150 },
+      { text: '      is a collective hallucination. Please enjoy responsibly.', delay: 200 }
+    ],
+    [
+      { text: 'POST: QUANTUM ENTANGLEMENT BUS..................................... [WARN]', delay: 350 },
+      { text: '      Phase drift at 0.004%. Slightly worse than yesterday.', delay: 200 },
+      { text: 'POST: LIE DETECTOR.................................................. [PASSIVE]', delay: 300 },
+      { text: '      Not actively scanning. Passively judging, however.', delay: 200 },
+      { text: 'POST: COFFEE MACHINE (SECTOR G).................................... [REAL?]', delay: 350 },
+      { text: '      Status changed since last check. Investigating.', delay: 200 }
+    ],
+    [
+      { text: 'POST: QUANTUM ENTANGLEMENT BUS..................................... [OK]', delay: 350 },
+      { text: '      All particles behaving. None misbehaving.', delay: 200 },
+      { text: 'POST: LIE DETECTOR.................................................. [RECALIBRATING]', delay: 300 },
+      { text: '      Last calibration: never. We are not sure how it works.', delay: 200 },
+      { text: 'POST: COFFEE MACHINE (SECTOR G).................................... [MISSING]', delay: 350 },
+      { text: '      The machine is gone. The coffee remains. Unclear how.', delay: 200 }
+    ],
+    [
+      { text: 'POST: QUANTUM ENTANGLEMENT BUS..................................... [WARN]', delay: 350 },
+      { text: '      One particle is entangled with something in 1997.', delay: 200 },
+      { text: 'POST: LIE DETECTOR.................................................. [DISABLED]', delay: 300 },
+      { text: '      HR has requested it remain off during review period.', delay: 200 },
+      { text: 'POST: COFFEE MACHINE (SECTOR G).................................... [NOT REAL]', delay: 350 },
+      { text: '      Timmy has been observed "using" it. Results: drinkable.', delay: 200 },
+      { text: '      We have stopped trying to understand Timmy.', delay: 150 }
+    ],
+    [
+      { text: 'POST: QUANTUM ENTANGLEMENT BUS..................................... [OK]', delay: 350 },
+      { text: 'POST: LIE DETECTOR.................................................. [DISABLED]', delay: 300 },
+      { text: '      Legal says no. Legal also says we cannot explain why.', delay: 200 },
+      { text: 'POST: COFFEE MACHINE (SECTOR G).................................... [PENDING]', delay: 350 },
+      { text: '      Reality status under review. Decision expected Q4.', delay: 200 }
+    ],
+    [
+      { text: 'POST: QUANTUM ENTANGLEMENT BUS..................................... [WARN]', delay: 300 },
+      { text: '      Entangled with an unknown third party. Rude of them.', delay: 250 },
+      { text: 'POST: LIE DETECTOR.................................................. [ACTIVE]', delay: 300 },
+      { text: '      Error: we never turned this on. Who turned this on?', delay: 250 },
+      { text: 'POST: COFFEE MACHINE (SECTOR G).................................... [REAL]', delay: 350 },
+      { text: '      Correction: The coffee machine is now real. Enjoy.', delay: 200 }
+    ]
+  ],
+  init: [
+    [
+      { text: 'INIT: Loading reality drivers...', delay: 400 },
+      { text: 'INIT: Mounting consensus volume /dev/consensus0...', delay: 300 }
+    ],
+    [
+      { text: 'INIT: Loading reality drivers...', delay: 400 },
+      { text: 'INIT: Mounting consensus volume /dev/consensus0...', delay: 300 },
+      { text: 'INIT: Checking for updates...', delay: 350 },
+      { text: '      No updates available. There never are.', delay: 200 }
+    ],
+    [
+      { text: 'INIT: Loading reality drivers (v4.2.1)...', delay: 400 },
+      { text: 'INIT: Mounting consensus volume /dev/consensus0...', delay: 300 },
+      { text: 'INIT: Mounting backup consensus volume...', delay: 350 },
+      { text: '      Backup volume is identical. Or is it? It is. Probably.', delay: 250 }
+    ],
+    [
+      { text: 'INIT: Loading reality drivers...', delay: 350 },
+      { text: '      Driver rtl_ontological.sys loaded with warnings.', delay: 250 },
+      { text: 'INIT: Mounting consensus volume /dev/consensus0...', delay: 350 }
+    ],
+    [
+      { text: 'INIT: Loading reality drivers...', delay: 400 },
+      { text: 'INIT: Mounting consensus volume /dev/consensus0...', delay: 300 },
+      { text: '      Volume mounted read-only. No editing reality today.', delay: 250 }
+    ],
+    [
+      { text: 'INIT: Loading reality drivers...', delay: 350 },
+      { text: '      WARNING: Driver rtl_mirage.sys is experimental.', delay: 250 },
+      { text: 'INIT: Mounting consensus volume /dev/consensus0...', delay: 350 }
+    ]
+  ],
+  handshake: [
+    [
+      { text: 'INIT: Entanglement handshake with Sites 1-7...', delay: 400 },
+      { text: 'INIT: Site 5 not responding. Assuming normal.', delay: 300 },
+      { text: 'INIT: Site 5 responding. Too late. Ignoring.', delay: 250 }
+    ],
+    [
+      { text: 'INIT: Entanglement handshake with Sites 1-7...', delay: 400 },
+      { text: 'INIT: Sites 1-4 responding. Site 5: as expected.', delay: 300 },
+      { text: 'INIT: Sites 6-7 responding. All sites nominal.', delay: 250 }
+    ],
+    [
+      { text: 'INIT: Entanglement handshake with Sites 1-7...', delay: 400 },
+      { text: 'INIT: Site 3 requesting authentication.', delay: 300 },
+      { text: '      Authentication sent. Site 3 claims it never asked.', delay: 250 },
+      { text: 'INIT: Remaining sites responding normally.', delay: 250 }
+    ],
+    [
+      { text: 'INIT: Entanglement handshake with Sites 1-7...', delay: 400 },
+      { text: 'INIT: Site 5 not responding. This is normal.', delay: 300 },
+      { text: 'INIT: Site 8 responding. We do not have a Site 8.', delay: 350 },
+      { text: '      Ignoring Site 8. It will go away. It always does.', delay: 250 }
+    ],
+    [
+      { text: 'INIT: Entanglement handshake with Sites 1-3...', delay: 400 },
+      { text: '      Sites 4-7 offline for scheduled maintenance.', delay: 300 },
+      { text: '      Maintenance scheduled for: [DATE NOT FOUND].', delay: 250 },
+      { text: '      Proceeding with reduced site array.', delay: 200 }
+    ],
+    [
+      { text: 'INIT: Entanglement handshake with all sites...', delay: 400 },
+      { text: 'INIT: All sites responding. This has never happened.', delay: 350 },
+      { text: '      Logging event for posterity. Checking for errors.', delay: 300 },
+      { text: '      No errors found. Suspicious.', delay: 200 }
+    ]
+  ],
+  kernel: [
+    [{ text: 'BOOT: Kernel REALITY_KERN v0.9.3-beta loaded.', delay: 300 }],
+    [{ text: 'BOOT: Kernel REALITY_KERN v0.9.3-beta loaded successfully.', delay: 300 }],
+    [{ text: 'BOOT: Kernel REALITY_KERN v0.9.3-beta loaded. We think.', delay: 350 }],
+    [{ text: 'BOOT: Kernel REALITY_KERN v0.9.3-beta (experimental) loaded.', delay: 300 }],
+    [{ text: 'BOOT: Kernel REALITY_KERN v0.9.3 loaded. Beta tag removed.', delay: 300 },
+     { text: '      Decision: it works well enough. Ship it.', delay: 200 }],
+    [{ text: 'BOOT: Kernel REALITY_KERN v0.9.3-beta loaded.', delay: 300 },
+     { text: '      WARNING: This kernel has known issues with', delay: 150 },
+     { text: '      temporal paradoxes. Avoid creating any.', delay: 150 }]
+  ]
+};
+
 RRRco.motds = [
   [
     '',
@@ -278,27 +460,20 @@ RRRco.runBootSequence = function(terminal) {
 
   return new Promise(function(resolve) {
 
-    var messages = [
-      { text: '', delay: 300 },
-      { text: 'RRRco Secure Terminal BIOS v2.14 \u2014 INITIALIZING...', delay: 500 },
-      { text: 'POST: MEMORY CHECK.................................................. [OK]', delay: 350 },
-      { text: 'POST: CRYPTO ENGINE................................................. [OK]', delay: 250 },
-      { text: 'POST: REALITY ANCHOR CALIBRATION................................... [OK]', delay: 450 },
-      { text: 'POST: QUANTUM ENTANGLEMENT BUS..................................... [WARN]', delay: 350 },
-      { text: '      Phase drift detected at 0.002%. Within tolerances.', delay: 200 },
-      { text: 'POST: LIE DETECTOR.................................................. [DISABLED]', delay: 300 },
-      { text: '      Disabled per Legal Advisory 2026-03. We are not', delay: 150 },
-      { text: '      legally permitted to detect lies at this time.', delay: 150 },
-      { text: 'POST: COFFEE MACHINE (SECTOR G).................................... [NOT REAL]', delay: 350 },
-      { text: '      This device does not exist. Any coffee it produces', delay: 150 },
-      { text: '      is a collective hallucination. Please enjoy responsibly.', delay: 200 },
-      { text: 'INIT: Loading reality drivers...', delay: 400 },
-      { text: 'INIT: Mounting consensus volume /dev/consensus0...', delay: 300 },
-      { text: 'INIT: Entanglement handshake with Sites 1-7...', delay: 400 },
-      { text: 'INIT: Site 5 not responding. Assuming normal.', delay: 300 },
-      { text: 'INIT: Site 5 responding. Too late. Ignoring.', delay: 250 },
-      { text: 'BOOT: Kernel REALITY_KERN v0.9.3-beta loaded.', delay: 300 }
-    ];
+    function pickRandom(arr) {
+      return arr[Math.floor(Math.random() * arr.length)];
+    }
+
+    var messages = [];
+    var phases = RRRco.bootPhases;
+    var header = pickRandom(phases.header);
+    var post = pickRandom(phases.post);
+    var esoteric = pickRandom(phases.esoteric);
+    var init = pickRandom(phases.init);
+    var handshake = pickRandom(phases.handshake);
+    var kernel = pickRandom(phases.kernel);
+
+    messages = header.concat(post, esoteric, init, handshake, kernel);
 
     var slogans = [
       'Your Reality Is Our Priority',
