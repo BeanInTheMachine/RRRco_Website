@@ -1,0 +1,165 @@
+/* ── RRRco Secure Terminal — Amber Phosphor CRT ── */
+
+:root {
+  --bg: #0a0a0a;
+  --fg: #ffb000;
+  --fg-dim: #996a00;
+  --fg-glow: rgba(255, 176, 0, 0.5);
+  --font: 'Courier New', Courier, monospace;
+  --font-size: 15px;
+  --line-height: 1.35;
+  --padding: 20px;
+  --scanline-opacity: 0.035;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  background: var(--bg);
+  overflow: hidden;
+}
+
+body {
+  font-family: var(--font);
+  font-size: var(--font-size);
+  line-height: var(--line-height);
+  color: var(--fg);
+  -webkit-font-smoothing: none;
+  -moz-osx-font-smoothing: unset;
+}
+
+/* ── CRT Scanline Overlay ── */
+
+#crt-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, var(--scanline-opacity)) 0px,
+    rgba(0, 0, 0, var(--scanline-opacity)) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  pointer-events: none;
+  z-index: 100;
+}
+
+/* ── Screen curvature vignette ── */
+
+#crt-overlay::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 60%,
+    rgba(0, 0, 0, 0.45) 100%
+  );
+  pointer-events: none;
+}
+
+/* ── Terminal ── */
+
+#terminal {
+  height: 100vh;
+  padding: var(--padding);
+  overflow-y: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+  position: relative;
+  scroll-behavior: auto;
+}
+
+#terminal::-webkit-scrollbar {
+  display: none;
+}
+
+/* ── Output Lines ── */
+
+.line {
+  text-shadow: 0 0 4px var(--fg-glow);
+  min-height: calc(var(--font-size) * var(--line-height));
+}
+
+/* ── Input Line ── */
+
+.input-line {
+  text-shadow: 0 0 4px var(--fg-glow);
+  min-height: calc(var(--font-size) * var(--line-height));
+  display: flex;
+  align-items: baseline;
+}
+
+.input-line .prompt {
+  white-space: pre;
+}
+
+.input-line .input-text {
+  white-space: pre;
+}
+
+/* ── Blinking Cursor ── */
+
+.cursor {
+  display: inline-block;
+  width: 0.6em;
+  height: 1.1em;
+  background: var(--fg);
+  vertical-align: text-bottom;
+  margin-left: 1px;
+  box-shadow: 0 0 6px var(--fg-glow);
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* ── Hidden Input (keystroke capture) ── */
+
+.hidden-input {
+  position: absolute;
+  left: -9999px;
+  top: -9999px;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+}
+
+/* ── Mobile Block ── */
+
+.mobile-block {
+  display: none;
+  font-family: var(--font);
+  font-size: var(--font-size);
+  color: var(--fg);
+  text-shadow: 0 0 4px var(--fg-glow);
+  text-align: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  line-height: 1.8;
+}
+
+@media (max-width: 599px) {
+  #terminal,
+  #crt-overlay {
+    display: none;
+  }
+  .mobile-block {
+    display: block;
+  }
+}

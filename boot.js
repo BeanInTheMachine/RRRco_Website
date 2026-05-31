@@ -1,0 +1,122 @@
+var RRRco = RRRco || {};
+
+RRRco.runBootSequence = function(terminal) {
+  terminal.mode = 'boot';
+  terminal._renderInputLine();
+
+  return new Promise(function(resolve) {
+
+    var messages = [
+      { text: '', delay: 300 },
+      { text: 'RRRco Secure Terminal BIOS v2.14 \u2014 INITIALIZING...', delay: 500 },
+      { text: 'POST: MEMORY CHECK.................................................. [OK]', delay: 350 },
+      { text: 'POST: CRYPTO ENGINE................................................. [OK]', delay: 250 },
+      { text: 'POST: REALITY ANCHOR CALIBRATION................................... [OK]', delay: 450 },
+      { text: 'POST: QUANTUM ENTANGLEMENT BUS..................................... [WARN]', delay: 350 },
+      { text: '      Phase drift detected at 0.002%. Within tolerances.', delay: 200 },
+      { text: 'POST: LIE DETECTOR.................................................. [DISABLED]', delay: 300 },
+      { text: '      Disabled per Legal Advisory 2026-03. We are not', delay: 150 },
+      { text: '      legally permitted to detect lies at this time.', delay: 150 },
+      { text: 'POST: COFFEE MACHINE (SECTOR G).................................... [NOT REAL]', delay: 350 },
+      { text: '      This device does not exist. Any coffee it produces', delay: 150 },
+      { text: '      is a collective hallucination. Please enjoy responsibly.', delay: 200 },
+      { text: 'INIT: Loading reality drivers...', delay: 400 },
+      { text: 'INIT: Mounting consensus volume /dev/consensus0...', delay: 300 },
+      { text: 'INIT: Entanglement handshake with Sites 1-7...', delay: 400 },
+      { text: 'INIT: Site 5 not responding. Assuming normal.', delay: 300 },
+      { text: 'INIT: Site 5 responding. Too late. Ignoring.', delay: 250 },
+      { text: 'BOOT: Kernel REALITY_KERN v0.9.3-beta loaded.', delay: 300 }
+    ];
+
+    var asciiLogo = [
+      '\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557',
+      '\u2551                                                                  \u2551',
+      '\u2551   \u2588\u2588\u2588\u2588\u2588\u2588\u2588  \u2588\u2588\u2588\u2588\u2588\u2588\u2588  \u2588\u2588\u2588\u2588\u2588\u2588\u2588   \u2588\u2588\u2588\u2588\u2588\u2588\u2588  \u2588\u2588\u2588\u2588\u2588\u2588\u2588                    \u2551',
+      '\u2551   \u2588\u2588   \u2588\u2588 \u2588\u2588   \u2588\u2588 \u2588\u2588   \u2588\u2588 \u2588\u2588       \u2588\u2588   \u2588\u2588                   \u2551',
+      '\u2551   \u2588\u2588\u2588\u2588\u2588\u2588\u2588  \u2588\u2588\u2588\u2588\u2588\u2588\u2588  \u2588\u2588\u2588\u2588\u2588\u2588\u2588  \u2588\u2588       \u2588\u2588   \u2588\u2588                   \u2551',
+      '\u2551   \u2588\u2588   \u2588\u2588 \u2588\u2588   \u2588\u2588 \u2588\u2588   \u2588\u2588 \u2588\u2588       \u2588\u2588   \u2588\u2588                   \u2551',
+      '\u2551   \u2588\u2588   \u2588\u2588 \u2588\u2588   \u2588\u2588 \u2588\u2588   \u2588\u2588  \u2588\u2588\u2588\u2588\u2588\u2588\u2588  \u2588\u2588\u2588\u2588\u2588\u2588\u2588                    \u2551',
+      '\u2551                                                                  \u2551',
+      '\u2551        REALITY REPLACEMENT RESEARCH COMPANY                       \u2551',
+      '\u2551        "Your Reality Is Our Priority"                             \u2551',
+      '\u2551                                                                  \u2551',
+      '\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d'
+    ];
+
+    var banner = [
+      '',
+      'RRRco Secure Terminal v' + RRRco.session.terminalVersion,
+      'Clearance: ' + RRRco.session.clearance,
+      'Kernel: REALITY_KERN v0.9.3-beta (experimental)',
+      ''
+    ];
+
+    var motd = [
+      '',
+      '\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550',
+      '               MESSAGE OF THE DAY (UMBRA-4)                    ',
+      '\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550',
+      '',
+      'Welcome back, {username}. Your last login was from an',
+      'unrecognized temporal coordinate. This has been reported.',
+      '',
+      'REMINDER: All terminal activity is monitored, logged, and',
+      'potentially retroactively edited for compliance purposes.',
+      '',
+      'REMINDER: The coffee machine in Sector G is still not real.',
+      'Do not attempt to drink from it. We are working on it.',
+      '',
+      'REMINDER: If you experience sudden unrecognition of loved',
+      'ones, remain calm. This is a known side effect. Probably.',
+      '',
+      'Type "help" for available commands.',
+      '\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550',
+      ''
+    ];
+
+    var i = 0;
+    function nextMessage() {
+      if (i < messages.length) {
+        var msg = messages[i];
+        terminal.writeLine(msg.text);
+        i++;
+        setTimeout(nextMessage, msg.delay);
+      } else {
+        setTimeout(showLogo, 400);
+      }
+    }
+
+    function showLogo() {
+      terminal.writeLines(asciiLogo);
+      setTimeout(showBanner, 700);
+    }
+
+    function showBanner() {
+      terminal.writeLines(banner);
+      setTimeout(startLogin, 600);
+    }
+
+    function startLogin() {
+      terminal.mode = 'login';
+      terminal.setPrompt('login: ');
+      terminal.onLogin = function(username) {
+        setTimeout(function() {
+          showMotd(username);
+        }, 400);
+      };
+    }
+
+    function showMotd(username) {
+      var motdLines = [];
+      for (var j = 0; j < motd.length; j++) {
+        motdLines.push(motd[j].replace('{username}', username));
+      }
+      terminal.writeLines(motdLines);
+      terminal.mode = 'command';
+      terminal.setPrompt(username + '@' + RRRco.session.hostname + ':~$ ');
+      resolve(username);
+    }
+
+    nextMessage();
+  });
+};
