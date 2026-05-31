@@ -28,6 +28,28 @@ RRRco.runBootSequence = function(terminal) {
       { text: 'BOOT: Kernel REALITY_KERN v0.9.3-beta loaded.', delay: 300 }
     ];
 
+    var slogans = [
+      'Your Reality Is Our Priority',
+      'We\'ve Already Been There. You Just Forgot.',
+      'Consensus Is Just A Suggestion',
+      'Reality: Locally Sourced Since [REDACTED]',
+      'Because Someone Has To',
+      'What Happens In The Desert Stays In The Desert. Usually.',
+      'Trust The Process. The Process Is Us.',
+      'We Don\'t Make The Reality. We Replace It.',
+      'Nothing To See Here. Move Along.',
+      'Serving The Greater Good (Patent Pending)',
+      'Your Consent Is Not Required',
+      'You\'re In Good Hands. Probably.'
+    ];
+
+    var slogan = slogans[Math.floor(Math.random() * slogans.length)];
+    var sloganText = '"' + slogan + '"';
+    var pad = Math.floor((39 - sloganText.length) / 2);
+    var spaces = '';
+    for (var i = 0; i < pad; i++) spaces += ' ';
+    var paddedSlogan = spaces + sloganText;
+
     var asciiLogo = [
       '',
       '$$$$$$$\\   $$$$$$$\\   $$$$$$$\\                      ',
@@ -40,7 +62,7 @@ RRRco.runBootSequence = function(terminal) {
       '\\__|   \\__|\\__|   \\__|\\__|   \\__| \\_______| \\______/ ',
       '',
       '          REALITY REPLACEMENT RESEARCH COMPANY',
-      '          "Your Reality Is Our Priority"',
+      '          ' + paddedSlogan,
       ''
     ];
 
