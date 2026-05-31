@@ -464,6 +464,123 @@ RRRco.runBootSequence = function(terminal) {
       return arr[Math.floor(Math.random() * arr.length)];
     }
 
+    function getTimeMessage() {
+      var now = new Date();
+      var h = now.getHours();
+      var m = now.getMinutes();
+      var ampm = h >= 12 ? 'PM' : 'AM';
+      var h12 = h % 12 || 12;
+      var mm = m < 10 ? '0' + m : m;
+      var t = h12 + ':' + mm + ' ' + ampm;
+
+      var period;
+      if (h >= 4 && h < 12) period = 'morning';
+      else if (h >= 12 && h < 17) period = 'afternoon';
+      else if (h >= 17 && h < 21) period = 'evening';
+      else period = 'night';
+
+      var messages = {
+        morning: [
+          [
+            { text: 'POST: LOCAL TEMPORAL COORDINATE............................... [' + t + ']', delay: 300 },
+            { text: '      Morning detected. Coffee protocol recommended.', delay: 200 },
+            { text: '      The desert is cool now. It will not stay that way.', delay: 200 }
+          ],
+          [
+            { text: 'POST: LOCAL TEMPORAL COORDINATE............................... [' + t + ']', delay: 300 },
+            { text: '      Sunrise confirmed. Reality anchor recalibrated for', delay: 200 },
+            { text: '      diurnal cycle. Shadows are behaving normally. For now.', delay: 200 }
+          ],
+          [
+            { text: 'POST: LOCAL TEMPORAL COORDINATE............................... [' + t + ']', delay: 300 },
+            { text: '      Early shift active. Skeleton crew on duty.', delay: 200 },
+            { text: '      If you are the only one here, that is normal.', delay: 200 }
+          ],
+          [
+            { text: 'POST: LOCAL TEMPORAL COORDINATE............................... [' + t + ']', delay: 300 },
+            { text: '      Morning. The coyotes have stopped howling.', delay: 200 },
+            { text: '      That means they found something. Do not investigate.', delay: 200 }
+          ]
+        ],
+        afternoon: [
+          [
+            { text: 'POST: LOCAL TEMPORAL COORDINATE............................... [' + t + ']', delay: 300 },
+            { text: '      Afternoon. Peak heat. The mirages are strongest now.', delay: 200 },
+            { text: '      If you see water, it is not water.', delay: 200 }
+          ],
+          [
+            { text: 'POST: LOCAL TEMPORAL COORDINATE............................... [' + t + ']', delay: 300 },
+            { text: '      Afternoon thermal load: within tolerances.', delay: 200 },
+            { text: '      Recommend: stay indoors. The sun here is not', delay: 150 },
+            { text: '      the same sun you are used to. Probably.', delay: 200 }
+          ],
+          [
+            { text: 'POST: LOCAL TEMPORAL COORDINATE............................... [' + t + ']', delay: 300 },
+            { text: '      Midday operations. Visibility: maximum.', delay: 200 },
+            { text: '      Being seen is not the same as being noticed.', delay: 250 }
+          ],
+          [
+            { text: 'POST: LOCAL TEMPORAL COORDINATE............................... [' + t + ']', delay: 300 },
+            { text: '      Afternoon. The vending machines restock at 2 PM.', delay: 200 },
+            { text: '      We do not know who restocks them. We have never seen', delay: 150 },
+            { text: '      anyone do it. Do not try to catch them.', delay: 200 }
+          ]
+        ],
+        evening: [
+          [
+            { text: 'POST: LOCAL TEMPORAL COORDINATE............................... [' + t + ']', delay: 300 },
+            { text: '      Evening. The desert cools. The shift changes.', delay: 200 },
+            { text: '      Night shift: same work, fewer witnesses.', delay: 200 }
+          ],
+          [
+            { text: 'POST: LOCAL TEMPORAL COORDINATE............................... [' + t + ']', delay: 300 },
+            { text: '      Sunset confirmed. Light levels decreasing.', delay: 200 },
+            { text: '      Transitional period. Reality is most malleable now.', delay: 250 }
+          ],
+          [
+            { text: 'POST: LOCAL TEMPORAL COORDINATE............................... [' + t + ']', delay: 300 },
+            { text: '      Evening. The day shift has logged off.', delay: 200 },
+            { text: '      If you are still here, you are night shift now.', delay: 200 },
+            { text: '      Congratulations. Or condolences. We do not judge.', delay: 200 }
+          ],
+          [
+            { text: 'POST: LOCAL TEMPORAL COORDINATE............................... [' + t + ']', delay: 300 },
+            { text: '      Dusk. The horizon does something interesting now.', delay: 250 },
+            { text: '      Do not look directly at it for more than 4 seconds.', delay: 200 }
+          ]
+        ],
+        night: [
+          [
+            { text: 'POST: LOCAL TEMPORAL COORDINATE............................... [' + t + ']', delay: 300 },
+            { text: '      Night operations mode active. Lights: minimal.', delay: 200 },
+            { text: '      The stars are watching. The stars are not always stars.', delay: 200 }
+          ],
+          [
+            { text: 'POST: LOCAL TEMPORAL COORDINATE............................... [' + t + ']', delay: 300 },
+            { text: '      Late hour detected. Skeleton procedures engaged.', delay: 200 },
+            { text: '      If you hear footsteps, they are yours.', delay: 200 },
+            { text: '      If you hear footsteps and you are not walking...', delay: 200 },
+            { text: '      ...remain still. It will pass.', delay: 200 }
+          ],
+          [
+            { text: 'POST: LOCAL TEMPORAL COORDINATE............................... [' + t + ']', delay: 300 },
+            { text: '      Night. The facility breathes differently after dark.', delay: 250 },
+            { text: '      This is normal. The breathing is structural. Probably.', delay: 250 }
+          ],
+          [
+            { text: 'POST: LOCAL TEMPORAL COORDINATE............................... [' + t + ']', delay: 300 },
+            { text: '      Deep night. Most personnel are asleep.', delay: 200 },
+            { text: '      The ones who are not asleep are not personnel.', delay: 250 },
+            { text: '      Do not engage with them. They will leave at dawn.', delay: 200 }
+          ]
+        ]
+      };
+
+      return pickRandom(messages[period]);
+    }
+
+    var timeCheck = getTimeMessage();
+
     var messages = [];
     var phases = RRRco.bootPhases;
     var header = pickRandom(phases.header);
@@ -473,7 +590,7 @@ RRRco.runBootSequence = function(terminal) {
     var handshake = pickRandom(phases.handshake);
     var kernel = pickRandom(phases.kernel);
 
-    messages = header.concat(post, esoteric, init, handshake, kernel);
+    messages = header.concat(post, esoteric, timeCheck, init, handshake, kernel);
 
     var slogans = [
       'Your Reality Is Our Priority',
