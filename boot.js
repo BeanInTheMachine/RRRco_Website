@@ -500,6 +500,17 @@ RRRco.runBootSequence = function(terminal) {
             { text: 'POST: LOCAL TEMPORAL COORDINATE............................... [' + t + ']', delay: 300 },
             { text: '      Morning. The coyotes have stopped howling.', delay: 200 },
             { text: '      That means they found something. Do not investigate.', delay: 200 }
+          ],
+          [
+            { text: 'POST: LOCAL TEMPORAL COORDINATE............................... [' + t + ']', delay: 300 },
+            { text: '      Morning. Cafeteria opens at 0600. Menu: [CLASSIFIED].', delay: 250 },
+            { text: '      The eggs are real. We are 94% sure about the eggs.', delay: 200 }
+          ],
+          [
+            { text: 'POST: LOCAL TEMPORAL COORDINATE............................... [' + t + ']', delay: 300 },
+            { text: '      Dawn patrol report: perimeter secure.', delay: 200 },
+            { text: '      One patrol member reports seeing themselves.', delay: 200 },
+            { text: '      This has been logged as a minor temporal echo.', delay: 200 }
           ]
         ],
         afternoon: [
@@ -524,6 +535,18 @@ RRRco.runBootSequence = function(terminal) {
             { text: '      Afternoon. The vending machines restock at 2 PM.', delay: 200 },
             { text: '      We do not know who restocks them. We have never seen', delay: 150 },
             { text: '      anyone do it. Do not try to catch them.', delay: 200 }
+          ],
+          [
+            { text: 'POST: LOCAL TEMPORAL COORDINATE............................... [' + t + ']', delay: 300 },
+            { text: '      Afternoon. Siesta protocol recommended for all', delay: 200 },
+            { text: '      non-essential personnel. Dream logs are collected', delay: 150 },
+            { text: '      automatically. You do not need to submit anything.', delay: 200 }
+          ],
+          [
+            { text: 'POST: LOCAL TEMPORAL COORDINATE............................... [' + t + ']', delay: 300 },
+            { text: '      Afternoon lull detected. Productivity: expected.', delay: 200 },
+            { text: '      The air conditioning in Sector B is making a sound', delay: 150 },
+            { text: '      that is almost words. Maintenance has been notified.', delay: 200 }
           ]
         ],
         evening: [
@@ -547,6 +570,17 @@ RRRco.runBootSequence = function(terminal) {
             { text: 'POST: LOCAL TEMPORAL COORDINATE............................... [' + t + ']', delay: 300 },
             { text: '      Dusk. The horizon does something interesting now.', delay: 250 },
             { text: '      Do not look directly at it for more than 4 seconds.', delay: 200 }
+          ],
+          [
+            { text: 'POST: LOCAL TEMPORAL COORDINATE............................... [' + t + ']', delay: 300 },
+            { text: '      Evening. The sunset is especially red tonight.', delay: 250 },
+            { text: '      This is not atmospheric. This is by design.', delay: 200 }
+          ],
+          [
+            { text: 'POST: LOCAL TEMPORAL COORDINATE............................... [' + t + ']', delay: 300 },
+            { text: '      Evening. Evening briefing in 20 minutes.', delay: 200 },
+            { text: '      Attendance: mandatory. Memory of attendance:', delay: 150 },
+            { text: '      not guaranteed. Briefing topic: [RETROACTIVE].', delay: 200 }
           ]
         ],
         night: [
@@ -572,6 +606,17 @@ RRRco.runBootSequence = function(terminal) {
             { text: '      Deep night. Most personnel are asleep.', delay: 200 },
             { text: '      The ones who are not asleep are not personnel.', delay: 250 },
             { text: '      Do not engage with them. They will leave at dawn.', delay: 200 }
+          ],
+          [
+            { text: 'POST: LOCAL TEMPORAL COORDINATE............................... [' + t + ']', delay: 300 },
+            { text: '      Night. The hum from the reality anchors is louder', delay: 200 },
+            { text: '      at this hour. This is normal. Do not hum along.', delay: 250 }
+          ],
+          [
+            { text: 'POST: LOCAL TEMPORAL COORDINATE............................... [' + t + ']', delay: 300 },
+            { text: '      Night watch active. You are the watch.', delay: 200 },
+            { text: '      If you see something, say nothing.', delay: 200 },
+            { text: '      If something sees you, it already knows.', delay: 250 }
           ]
         ]
       };
