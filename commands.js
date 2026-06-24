@@ -425,18 +425,22 @@ RRRco.getCompletions = function(prefix) {
       hr(term);
       term.writeLine('');
 
-      var words = post.content.split(/\s+/);
-      var line = '';
+      var paragraphs = post.content.split('\n');
       var maxWidth = 74;
-      for (var i = 0; i < words.length; i++) {
-        if (line.length + words[i].length + (line ? 1 : 0) > maxWidth) {
-          term.writeLine(line);
-          line = words[i];
-        } else {
-          line += (line ? ' ' : '') + words[i];
+      for (var p = 0; p < paragraphs.length; p++) {
+        if (p > 0) term.writeLine('');
+        var words = paragraphs[p].split(/\s+/);
+        var line = '';
+        for (var i = 0; i < words.length; i++) {
+          if (line.length + words[i].length + (line ? 1 : 0) > maxWidth) {
+            term.writeLine(line);
+            line = words[i];
+          } else {
+            line += (line ? ' ' : '') + words[i];
+          }
         }
+        if (line) term.writeLine(line);
       }
-      if (line) term.writeLine(line);
 
       term.writeLine('');
       hr(term);
